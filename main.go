@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"github.com/helloproclub/pride-boilerplate/command"
 )
 
 func main() {
-	fmt.Println("hello world")
+	command.Execute()
 }
