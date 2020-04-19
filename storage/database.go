@@ -7,7 +7,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-func initDB(
+func InitDB(
 	dbHost string,
 	dbPort string,
 	dbUser string,

@@ -5,9 +5,9 @@ import (
 )
 
 type Todo struct {
-	Id          uuid.UUID
-	Title       string
-	Description string
+	Id          uuid.UUID `json:"id"`
+	Title       string    `json:"title"`
+	Description string    `json:"description"`
 }
 
 func NewTodo(title, description string) Todo {

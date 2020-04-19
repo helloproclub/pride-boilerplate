@@ -12,6 +12,10 @@ type TodoService struct {
 	repository repository.TodoRepository
 }
 
+func NewTodoService(repo repository.TodoRepository) TodoService {
+	return TodoService{repository: repo}
+}
+
 func (service *TodoService) CreateNewTodo(title, description string) (domain.Todo, error) {
 	todo, err := service.repository.Save(domain.NewTodo(title, description))
 	if err != nil {
