@@ -52,13 +52,13 @@ func (handler *Handler) CreateNewTodo(ctx echo.Context) error {
 }
 
 func (handler *Handler) FindAllTodo(ctx echo.Context) error {
-	limit, err := strconv.Atoi(ctx.Param("limit"))
+	limit, err := strconv.Atoi(ctx.QueryParam("limit"))
 	if err != nil {
 		fmt.Println(err.Error())
 		return echo.ErrBadRequest
 	}
 
-	offset, err := strconv.Atoi(ctx.Param("offset"))
+	offset, err := strconv.Atoi(ctx.QueryParam("offset"))
 	if err != nil {
 		fmt.Println(err.Error())
 		return echo.ErrBadRequest
