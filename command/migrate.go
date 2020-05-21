@@ -35,11 +35,15 @@ func processMigration(cmd *cobra.Command, args []string) {
 		Dir: "./migration",
 	}
 
-	migrate.SetTable("schema_migrations")
-	dbURL := helper.GetEnv("DB_URL", "").(string)
-	db, err := sql.Open("postgres", dbURL)
+	dbHost := fmt.Sprintf("%v", helper.GetEnv("DB_HOST", ""))
+	dbPort := fmt.Sprintf("%v", helper.GetEnv("DB_PORT", ""))
+	dbUser := fmt.Sprintf("%v", helper.GetEnv("DB_USER", ""))
+	dbName := fmt.Sprintf("%v", helper.GetEnv("DB_NAME", ""))
+	dbPass := fmt.Sprintf("%v", helper.GetEnv("DB_PASSWORD", ""))
+	db, err := sql.Open("postgres", fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable", dbHost, dbPort, dbUser, dbName, dbPass))
+
 	if err != nil {
-		fmt.Println(dbURL + " failed to connect")
+		fmt.Println(" failed to connect")
 		panic(err.Error())
 	}
 

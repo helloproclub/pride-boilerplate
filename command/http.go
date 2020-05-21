@@ -23,11 +23,11 @@ func init() {
 }
 
 func httpServe(cmd *cobra.Command, args []string) {
-	dbHost := fmt.Sprintf("v", helper.GetEnv("DB_HOST", ""))
-	dbPort := fmt.Sprintf("v", helper.GetEnv("DB_HOST", ""))
-	dbUser := fmt.Sprintf("v", helper.GetEnv("DB_HOST", ""))
-	dbName := fmt.Sprintf("v", helper.GetEnv("DB_HOST", ""))
-	dbPass := fmt.Sprintf("v", helper.GetEnv("DB_HOST", ""))
+	dbHost := fmt.Sprintf("%v", helper.GetEnv("DB_HOST", ""))
+	dbPort := fmt.Sprintf("%v", helper.GetEnv("DB_PORT", ""))
+	dbUser := fmt.Sprintf("%v", helper.GetEnv("DB_USER", ""))
+	dbName := fmt.Sprintf("%v", helper.GetEnv("DB_NAME", ""))
+	dbPass := fmt.Sprintf("%v", helper.GetEnv("DB_PASSWORD", ""))
 	db := storage.InitDB(dbHost, dbPort, dbUser, dbName, dbPass)
 
 	// init repositories
