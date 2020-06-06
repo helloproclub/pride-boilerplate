@@ -11,23 +11,23 @@ import (
 )
 
 type createTodoRequest struct {
-	title       string
-	description string
+	Title       string `json:"title"`
+	Description string `json:"description"`
 }
 
 type updateTodoRequest struct {
-	title       string
-	description string
+	Title       string `json:"title"`
+	Description string `json:"description"`
 }
 
 type todoResponse struct {
-	ok   bool
-	data domain.Todo
+	Ok   bool        `json:"ok"`
+	Data domain.Todo `json:"data"`
 }
 
 type todoListResponse struct {
-	ok   bool
-	data []domain.Todo
+	Ok   bool          `json:"ok"`
+	Data []domain.Todo `json:"data"`
 }
 
 func (handler *Handler) CreateNewTodo(ctx echo.Context) error {
@@ -39,15 +39,15 @@ func (handler *Handler) CreateNewTodo(ctx echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	todo, err := handler.service.Todo.CreateNewTodo(request.title, request.description)
+	todo, err := handler.service.Todo.CreateNewTodo(request.Title, request.Description)
 	if err != nil {
 		fmt.Println(err.Error())
 		return echo.ErrInternalServerError
 	}
 
 	return ctx.JSON(200, todoResponse{
-		ok:   true,
-		data: todo,
+		Ok:   true,
+		Data: todo,
 	})
 }
 
@@ -71,8 +71,8 @@ func (handler *Handler) FindAllTodo(ctx echo.Context) error {
 	}
 
 	return ctx.JSON(200, todoListResponse{
-		ok:   true,
-		data: todos,
+		Ok:   true,
+		Data: todos,
 	})
 }
 
@@ -90,8 +90,8 @@ func (handler *Handler) GetTodoByID(ctx echo.Context) error {
 	}
 
 	return ctx.JSON(200, todoResponse{
-		ok:   true,
-		data: todos,
+		Ok:   true,
+		Data: todos,
 	})
 }
 
@@ -112,8 +112,8 @@ func (handler *Handler) UpdateTodoByID(ctx echo.Context) error {
 
 	todo, err := handler.service.Todo.Update(domain.Todo{
 		Id:          id,
-		Title:       request.title,
-		Description: request.description,
+		Title:       request.Title,
+		Description: request.Description,
 	})
 	if err != nil {
 		fmt.Println(err.Error())
@@ -121,8 +121,8 @@ func (handler *Handler) UpdateTodoByID(ctx echo.Context) error {
 	}
 
 	return ctx.JSON(200, todoResponse{
-		ok:   true,
-		data: todo,
+		Ok:   true,
+		Data: todo,
 	})
 }
 
@@ -140,7 +140,7 @@ func (handler *Handler) DeleteTodoByID(ctx echo.Context) error {
 	}
 
 	return ctx.JSON(200, todoResponse{
-		ok:   true,
-		data: todo,
+		Ok:   true,
+		Data: todo,
 	})
 }
